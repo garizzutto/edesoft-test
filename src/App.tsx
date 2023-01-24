@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Register from "./screens/Register";
 import UsersList from "./screens/UsersList";
 
 function App() {
@@ -13,12 +14,13 @@ function App() {
           <Link to="/users">Users</Link>
         </li>
         <li className="menu-item">
-          <Link to="/contact">Contact Us</Link>
+          <Link to="/new-user">Add new User</Link>
         </li>
       </ul>
       <Routes>
         <Route path="/" element={<h1>Home</h1>} />
         <Route path="/users" element={<UsersList />} />
+        <Route path="/new-user" element={<Register />} />
       </Routes>
     </Router>
   );
