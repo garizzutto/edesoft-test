@@ -1,0 +1,17 @@
+.header{
+  display: flex;
+  background-color: rgb(153, 153, 153);
+  margin: 0;
+}
+
+.menu-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+}
