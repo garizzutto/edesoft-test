@@ -1,35 +1,25 @@
 import { useState } from "react";
-import { addNewUser } from "../ApiService";
+import { addNewUser, editUser } from "../ApiService";
 import { User } from "../types";
-import "./Register.css";
+import "./UserForm.css";
 
-function Register() {
-  const initialState = {
-    email: "",
-    username: "",
-    password: "",
-    name: {
-      firstname: "",
-      lastname: "",
-    },
-    address: {
-      city: "",
-      street: "",
-      number: 0,
-      zipcode: "",
-      geolocation: {
-        lat: "",
-        long: "",
-      },
-    },
-    phone: "",
-  };
+function UserForm({
+  initialState,
+  isUpdate,
+}: {
+  initialState: User;
+  isUpdate: boolean;
+}) {
   const [user, setUser] = useState<User>(initialState);
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(await addNewUser(user));
-    setUser(initialState);
+    if (isUpdate) {
+      await addNewUser(user);
+      setUser(initialState);
+    } else {
+      await editUser(user);
+    }
   }
 
   return (
@@ -134,9 +124,9 @@ function Register() {
         value={user.phone}
         onChange={(e) => setUser({ ...user, phone: e.target.value })}
       />
-      <button type="submit">Add new User</button>
+      <button type="submit">{isUpdate ? "Edit user" : "Add new user"}</button>
     </form>
   );
 }
 
-export default Register;
+export default UserForm;
